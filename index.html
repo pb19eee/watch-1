@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIMEPIECE VAULT | Exclusive Luxury & Ice Out Collection</title>
+    <style>
+        :root {
+            --bg-dark: #070709;
+            --bg-card: #0f1015;
+            --bg-card-hover: #161822;
+            --accent-gold: #d4af37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.25);
+            --accent-ice: #80e5ff;
+            --accent-ice-glow: rgba(128, 229, 255, 0.25);
+            --text-main: #f5f5f7;
+            --text-muted: #8e8e93;
+            --border: #1f222e;
+            --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(7, 7, 9, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10rem 2rem 4rem;
+            background: radial-gradient(circle at 50% 30%, #151824 0%, var(--bg-dark) 70%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1a1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        /* FILTER BAR */
+        .filter-bar {
+            padding: 2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            background-color: #0b0c0f;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-filter {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-filter:hover, .btn-filter.active {
+            background-color: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 15px var(--accent-gold-glow);
+        }
+
+        .search-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            outline: none;
+            width: 280px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-gold);
+        }
+
+        /* CATALOG GRID */
+        .catalog {
+            padding: 5rem 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .watch-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .watch-card:hover {
+            transform: translateY(-8px);
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-gold-glow);
+        }
+
+        /* Spezieller Style für Ice Out */
+        .watch-card.ice-out:hover {
+            border-color: var(--accent-ice);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-ice-glow);
+        }
+
+        .badge {
+            align-self: flex-start;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-rolex {
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .badge-ice {
+            background-color: rgba(128, 229, 255, 0.1);
+            color: var(--accent-ice);
+            border: 1px solid var(--accent-ice);
+        }
+
+        .watch-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #fff;
+        }
+
+        .watch-ref {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .specs-table {
+            width: 100%;
+            margin-bottom: 2rem;
+            border-collapse: collapse;
+            flex-grow: 1;
+        }
+
+        .specs-table td {
+            padding: 0.4rem 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .specs-table td:first-child {
+            color: var(--text-muted);
+        }
+
+        .specs-table td:last-child {
+            text-align: right;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .btn-link {
+            display: block;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            background-color: transparent;
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-link:hover {
+            background-color: var(--accent-gold);
+            color: #000;
+        }
+
+        .ice-out .btn-link {
+            color: var(--accent-ice);
+            border-color: var(--accent-ice);
+        }
+
+        .ice-out .btn-link:hover {
+            background-color: var(--accent-ice);
+            color: #000;
+        }
+
+        /* BRANDS SECTION */
+        .brands-section {
+            padding: 5rem 8%;
+            background-color: #0b0c0f;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+        }
+
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .brand-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .brand-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-4px);
+        }
+
+        .brand-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .brand-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            background-color: var(--bg-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">TIMEPIECE<span>VAULT</span></div>
+        <nav>
+            <ul>
+                <li><a href="#catalog">Kollektion</a></li>
+                <li><a href="#rolex">Rolex</a></li>
+                <li><a href="#iceout">Ice Out</a></li>
+                <li><a href="#brands">Hersteller</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-tag">Selfmade Custom Line</div>
+        <h1>Zeitlose Eleganz & Iced Out Luxus</h1>
+        <p>Entdecke handverlesene Schweizer Luxusuhren, seltene Rolex-Klassiker und exklusive VVS Diamond Custom Anfertigungen.</p>
+    </section>
+
+    <section id="catalog" class="filter-bar">
+        <div class="filter-buttons">
+            <button class="btn-filter active" onclick="filterData('all')">Alle Modelle</button>
+            <button class="btn-filter" onclick="filterData('rolex')">Rolex</button>
+            <button class="btn-filter" onclick="filterData('iceout')">Ice Out</button>
+            <button class="btn-filter" onclick="filterData('patek')">Patek Philippe</button>
+            <button class="btn-filter" onclick="filterData('ap')">Audemars Piguet</button>
+        </div>
+        <input type="text" id="searchInput" class="search-box" placeholder="Modell oder Ref. suchen..." onkeyup="searchData()">
+    </section>
+
+    <main id="watchContainer" class="catalog">
+        <!-- Dynamisch per JavaScript befüllt -->
+    </main>
+
+    <section id="brands" class="brands-section">
+        <h2 class="section-heading">Offizielle Manufakturen</h2>
+        <div class="brand-grid">
+            <a href="https://www.rolex.com" target="_blank" class="brand-card">
+                <h4>Rolex</h4>
+                <p>rolex.com</p>
+            </a>
+            <a href="https://www.audemarspiguet.com" target="_blank" class="brand-card">
+                <h4>Audemars Piguet</h4>
+                <p>audemarspiguet.com</p>
+            </a>
+            <a href="https://www.patek.com" target="_blank" class="brand-card">
+                <h4>Patek Philippe</h4>
+                <p>patek.com</p>
+            </a>
+            <a href="https://www.hublot.com" target="_blank" class="brand-card">
+                <h4>Hublot</h4>
+                <p>hublot.com</p>
+            </a>
+            <a href="https://www.cartier.com" target="_blank" class="brand-card">
+                <h4>Cartier</h4>
+                <p>cartier.com</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 TIMEPIECE VAULT. Clean Dark Design Edition.</p>
+    </footer>
+
+    <script>
+        const watches = [
+            { id: 1, title: "Rolex Submariner Date", category: "rolex", ref: "126610LN", material: "Oystersteel", caliber: "3235", besatz: "Keiner (Original)", status: "Klassiker", link: "https://www.rolex.com" },
+            { id: 2, title: "Rolex Daytona Full Ice", category: "iceout", ref: "116500LN Custom", material: "Platin / VVS", caliber: "4130", besatz: "Full Pavé VVS1", status: "Ice Out", link: "https://www.rolex.com" },
+            { id: 3, title: "Rolex Day-Date 40", category: "rolex", ref: "228238", material: "18K Gelbgold", caliber: "3255", status: "Klassiker", besatz: "Keiner (Original)", link: "https://www.rolex.com" },
+            { id: 4, title: "AP Royal Oak Bust Down", category: "iceout", ref: "15500ST Custom", material: "Edelstahl / VVS", caliber: "4302", besatz: "Full Diamond Besatz", status: "Ice Out", link: "https://www.audemarspiguet.com" },
+            { id: 5, title: "Patek Philippe Nautilus", category: "patek", ref: "5711/1A", material: "Edelstahl", caliber: "26-330 S C", besatz: "Keiner (Original)", status: "Klassiker", link: "https://www.patek.com" },
+            { id: 6, title: "Rolex GMT-Master II Pepsi", category: "rolex", ref: "126710BLRO", material: "Oystersteel", caliber: "3285", besatz: "Keiner (Original)", status: "Klassiker", link: "https://www.rolex.com" },
+            { id: 7, title: "Rolex Datejust 41 Ice Bezel", category: "iceout", ref: "126300 Custom", material: "Edelstahl / VVS", caliber: "3235", besatz: "Baguette Lünette", status: "Ice Out", link: "https://www.rolex.com" },
+            { id: 8, title: "Audemars Piguet Royal Oak", category: "ap", ref: "15400ST", material: "Edelstahl", caliber: "3120", besatz: "Keiner (Original)", status: "Klassiker", link: "https://www.audemarspiguet.com" },
+            { id: 9, title: "Cartier Santos Bust Down", category: "iceout", ref: "WSSA0018 Custom", material: "Edelstahl / VVS", caliber: "1847 MC", besatz: "Full Iced Case", status: "Ice Out", link: "https://www.cartier.com" }
+        ];
+
+        function renderCards(data) {
+            const container = document.getElementById('watchContainer');
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                const isIce = item.category === 'iceout';
+                const card = document.createElement('div');
+                card.className = `watch-card ${isIce ? 'ice-out' : ''}`;
+
+                card.innerHTML = `
+                    <span class="badge ${isIce ? 'badge-ice' : 'badge-rolex'}">${item.status}</span>
+                    <h3 class="watch-title">${item.title}</h3>
+                    <div class="watch-ref">Ref. ${item.ref}</div>
+                    <table class="specs-table">
+                        <tr><td>Material</td><td>${item.material}</td></tr>
+                        <tr><td>Kaliber</td><td>${item.caliber}</td></tr>
+                        <tr><td>Steine</td><td>${item.besatz}</td></tr>
+                    </table>
+                    <a href="${item.link}" target="_blank" class="btn-link">Offizielle Seite &rarr;</a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterData(cat) {
+            document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (cat === 'all') {
+                renderCards(watches);
+            } else {
+                renderCards(watches.filter(w => w.category === cat));
+            }
+        }
+
+        function searchData() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const result = watches.filter(w => 
+                w.title.toLowerCase().includes(query) || 
+                w.ref.toLowerCase().includes(query) ||
+                w.material.toLowerCase().includes(query)
+            );
+            renderCards(result);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => renderCards(watches));
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
